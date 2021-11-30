@@ -1,7 +1,7 @@
 package test.adnuntius.trafficcounter.transformer;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import test.adnuntius.trafficcounter.model.VehiclePassedEvent;
 import test.adnuntius.trafficcounter.model.VehicleSize;
 
@@ -10,11 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class VehiclePassedEventTransformerTest {
+
+    @Autowired
+    VehiclePassedEventTransformer transformer;
 
     @Test
     void get() {
@@ -26,7 +27,7 @@ class VehiclePassedEventTransformerTest {
                 new VehiclePassedEvent("18673541", LocalDateTime.of(2020, 12, 01, 05, 18, 06), VehicleSize.S, 61),
                 new VehiclePassedEvent("18896541", LocalDateTime.of(2020, 10, 07, 07, 36, 06), VehicleSize.XL, 56));
 
-        List<VehiclePassedEvent> events = VehiclePassedEventTransformer.get(request);
+        List<VehiclePassedEvent> events = transformer.apply(request);
         assertThat(events, is(expected));
     }
 }
