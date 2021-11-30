@@ -1,6 +1,6 @@
 Traffic Counter
 ===============
-A spring boot application that collects ingests traffic counter events and print the summary to console  
+A spring boot application that ingests traffic counter events and print the summary to console  
 
 Usage
 -----
